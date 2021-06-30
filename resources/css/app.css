@@ -1,0 +1,24 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+th {
+    @apply text-lg;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btn {
+    height: 48px;
+    border-radius: 5px;
+    @apply flex items-center justify-center;
+    @apply px-5 text-lg;
+}
+
+.btn-primary {
+    color: white;
+    background: #414288;
+}
