@@ -13,25 +13,25 @@
         <th>License Plate</th>
         <th>Actions</th>
       </tr>
-      <tr style="border: 1px solid #eaeaea" v-for="cars in car" :key="cars.id">
+      <tr style="border: 1px solid #eaeaea" v-for="car in cars" :key="car.id">
         <td>
           <div class="my-3">
-            {{ car.Year }}
+            {{ car.year }}
           </div>
         </td>
         <td>
           <div class="my-3">
-            {{ car_brand }}
+            {{ car.brand }}
           </div>
         </td>
         <td>
           <div class="my-3">
-            {{ car.licensePlate }}
+            {{ car.license_plate }}
           </div>
         </td>
         <td>
           <div class="my-3 flex justify-center">
-            <inertia-link href="/dashboard/cars" :data="{ id: car }">
+            <inertia-link href="/dashboard/cars" :data="{ id: car.id }">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -54,7 +54,7 @@
                 ></path>
               </svg>
             </inertia-link>
-            <button @click="deleteCar(car)">
+            <button @click="deleteCar(car.id)">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -87,9 +87,9 @@ export default {
   },
   methods: {
     deleteCar(id) {
-      this.$inertia.get("/dashboard/cars", {
+      this.$inertia.delete("/dashboard/cars", {
         data: {
-          carId,
+          id
         },
       });
     },

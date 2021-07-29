@@ -14,6 +14,7 @@
             <div class="flex justify-between items-center mb-5">
               <p class="text-lg">Year</p>
               <input
+                v-model="form.year"
                 class="w-1/2"
                 type="number"
                 placeholder="2021"
@@ -23,6 +24,7 @@
             <div class="flex justify-between items-center mb-5">
               <p class="text-lg">Brand</p>
               <input
+                v-model="form.brand"
                 class="w-1/2"
                 type="text"
                 placeholder="Toyota"
@@ -32,6 +34,7 @@
             <div class="flex justify-between items-center mb-5">
               <p class="text-lg">License Plate</p>
               <input
+                v-model="form.license_plate"
                 class="w-1/2"
                 type="text"
                 placeholder="ASD23"
@@ -69,23 +72,24 @@ export default {
   data() {
     return {
       form: this.$inertia.form({
-        year: null,
-        id: "",
+        year: "",
+        brand: "",
+        license_plate: "",
+        id: ""
       }),
     };
   },
   mounted() {
     if (this.car) {
-      const { Year, LicensePlate, Brand, Id } = car;
-      this.form.Year = year;
-      this.form.licensePlate = license_plate;
-      this.form.brand = brand;
-      this.form.id = id;
+      this.form.year = this.car.year;
+      this.form.license_plate = this.car.license_plate;
+      this.form.brand = this.car.brand;
+      this.form.id = this.car.id;
     }
   },
   methods: {
     submit() {
-      this.form.get("/dashboard/cars");
+      this.form.post("/dashboard/cars");
     },
   },
 };

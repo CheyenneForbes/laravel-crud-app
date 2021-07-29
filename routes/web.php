@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
-    Route::post('/dashboard/cars', 'App\Http\Controllers\CarController@create')->name('cars');
-    Route::get('/dashboard/cars', 'App\Http\Controllers\CarController@store')->name('create-car');
-    Route::get('/dashboard/cars', 'App\Http\Controllers\CarController@delete')->name('delete-car');
+    Route::post('/dashboard/cars', 'App\Http\Controllers\CarController@store')->name('cars');
+    Route::get('/dashboard/cars', 'App\Http\Controllers\CarController@create')->name('create-car');
+    Route::delete('/dashboard/cars', 'App\Http\Controllers\CarController@delete')->name('delete-car');
 });

@@ -10,9 +10,9 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $cars = Car::first();
+        $cars = Car::where('user_id', $request->user()->id)->get();
         return Inertia::render('Dashboard', [
-            'cars' => null
+            'cars' => $cars
         ]);
     }
 }

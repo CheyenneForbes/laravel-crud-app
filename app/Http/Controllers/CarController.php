@@ -23,7 +23,7 @@ class CarController extends Controller
             $car = Car::find($id);
         }
         return Inertia::render("Cars/CreateCar", [
-            "car" => null
+            "car" => $car
         ]);
     }
 
@@ -31,16 +31,18 @@ class CarController extends Controller
         Car::updateOrCreate(
             ["id" => $request->id],
             [
-                "Brand" => $request->Brand,
-                "Year" => $request->Year,
-                "LicensePlate" => $request->license_plate
+                "brand" => $request->brand,
+                "year" => $request->year,
+                "license_plate" => $request->license_plate,
+                "user_id" => $request->user()->id
             ]
         );
         return $this->dashboardController->index($request);
     }
 
     public function delete(Request $request) {
-        Car::find($request->id);
+        Car::destroy($request->id);
+        error_log($request->id);
         return $this->dashboardController->index($request);
     }
 }
